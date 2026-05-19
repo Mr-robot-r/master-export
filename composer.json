@@ -1,0 +1,79 @@
+{
+  "name": "mastertek/master-export",
+  "description": "Master-Export handling for Laravel 8.0 and up",
+  "license": "MIT",
+  "keywords": [
+    "export",
+    "excel",
+    "pdf",
+    "png",
+    "txt"
+  ],
+  "authors": [
+    {
+      "name": "reza vahidi",
+      "email": "info@mastertek.ir",
+      "homepage": "https://mastertek.ir",
+      "role": "Developer"
+    }
+  ],
+  "homepage": "https://github.com/mr_robot_r/master_export",
+  "require": {
+    "php": "^8.1",
+    "illuminate/support": "^10.0|^11.0",
+    "spatie/laravel-package-tools": "^1.14",
+    "maatwebsite/excel": "^3.1",
+    "phpoffice/phpword": "^1.1",
+    "barryvdh/laravel-dompdf": "^2.0",
+    "tecnickcom/tcpdf": "^6.6"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.0",
+    "mockery/mockery": "^1.6",
+    "orchestra/testbench": "^8.0|^9.0|^10.0",
+    "phpunit/phpunit": "^10.1|^11.5"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Mastertek\\MasterExport\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mastertek\\MasterExport\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "6.x-dev",
+      "dev-master": "6.x-dev"
+    },
+    "laravel": {
+      "providers": [
+        "Mastertek\\MasterExport\\MasterExportServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "format": "pint",
+    "analyse": "echo 'Checking dependencies...' && composer require --dev larastan/larastan && phpstan analyse"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://mirror2.chabokan.net/composer/"
+    },
+    {
+      "packagist.org": false
+    }
+  ]
+}
