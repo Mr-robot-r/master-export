@@ -10,8 +10,7 @@ class ExporterService
     // ...
 
     public function __construct(
-        ExcelExportService $excelExporter
-        ,
+        ExcelExportService $excelExporter,
         PdfExporterService $pdfExporter  /* ... */
     ) {
         $this->excelExporter = $excelExporter;

@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Unit;
+namespace Mastertek\MasterExport\Tests\Unit;
 
 use Mastertek\MasterExport\Services\ExcelExportService;
 use Mastertek\MasterExport\Services\ExporterService;
-use PHPUnit\Framework\TestCase;
+use Mastertek\MasterExport\Services\PdfExporterService;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 
@@ -35,6 +35,12 @@ class ExcelExportServiceTest extends MockeryTestCase
         // ۱. ماک کردن سرویس فرزند
         $excelMock = Mockery::mock(ExcelExportService::class);
 
+
+        // Create a dummy mock for pdf (no expectations needed)
+        $pdfMock = Mockery::mock(PdfExporterService::class);
+        $pdfMock->shouldIgnoreMissing();
+
+
         // ۲. تنظیم انتظار
         $excelMock->shouldReceive('export')
             ->once()
@@ -42,7 +48,7 @@ class ExcelExportServiceTest extends MockeryTestCase
             ->andReturn('done');
 
         // ۳. تزریق ماک به سرویس مادر
-        $exporter = new ExporterService($excelMock);
+        $exporter = new ExporterService($excelMock, $pdfMock);
 
         // ۴. تست
         $this->assertEquals('done', $exporter->toExcel($data, $fields, $filename));
