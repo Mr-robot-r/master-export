@@ -21,7 +21,6 @@ class ExporterService
         $this->pdfExporter = $pdfExporter;
         $this->wordExporter = $wordExporter;
         $this->imgExporter = $imgExporter;
-        // ...
     }
 
     public function toExcel($data, $fields, $fileName)
