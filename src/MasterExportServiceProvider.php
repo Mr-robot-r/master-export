@@ -4,7 +4,9 @@ namespace Mastertek\MasterExport;
 
 use Mastertek\MasterExport\Services\ExcelExportService;
 use Mastertek\MasterExport\Services\ExporterService;
+use Mastertek\MasterExport\Services\ImgExporterService;
 use Mastertek\MasterExport\Services\PdfExporterService;
+use Mastertek\MasterExport\Services\WordExporterService;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -32,7 +34,9 @@ class MasterExportServiceProvider extends PackageServiceProvider
         $this->app->bind('data-exporter', function ($app) {
             return new ExporterService(
                 $app->make(ExcelExportService::class),
-                $app->make(PdfExporterService::class)
+                $app->make(PdfExporterService::class),
+                $app->make(WordExporterService::class),
+                $app->make(ImgExporterService::class),
             );
         });
     }

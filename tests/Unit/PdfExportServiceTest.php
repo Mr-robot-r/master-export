@@ -4,7 +4,9 @@ namespace Mastertek\MasterExport\Tests\Unit;
 
 use Mastertek\MasterExport\Services\ExcelExportService;
 use Mastertek\MasterExport\Services\ExporterService;
+use Mastertek\MasterExport\Services\ImgExporterService;
 use Mastertek\MasterExport\Services\PdfExporterService;
+use Mastertek\MasterExport\Services\WordExporterService;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 
@@ -32,6 +34,16 @@ class PdfExportServiceTest extends MockeryTestCase
         $excelMock = Mockery::mock(ExcelExportService::class);
         $excelMock->shouldIgnoreMissing();  // Ignore any calls to Excel
 
+
+        // Create a dummy mock for word (no expectations needed)
+        $wordMock = Mockery::mock(WordExporterService::class);
+        $wordMock->shouldIgnoreMissing();
+
+
+        // Create a dummy mock for img (no expectations needed)
+        $imgMock = Mockery::mock(ImgExporterService::class);
+        $imgMock->shouldIgnoreMissing();
+
         // Set expectation for PDF
         $pdfMock->shouldReceive('export')
             ->once()
@@ -39,7 +51,7 @@ class PdfExportServiceTest extends MockeryTestCase
             ->andReturn('done');
 
         // Inject both dependencies
-        $exporter = new ExporterService($excelMock, $pdfMock);
+        $exporter = new ExporterService($excelMock, $pdfMock, $wordMock, $imgMock);
 
         // Test
         $this->assertEquals('done', $exporter->toPdf($data, $fields, $filename));
