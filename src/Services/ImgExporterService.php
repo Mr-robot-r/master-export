@@ -12,6 +12,7 @@ class ImgExporterService
 
     public function __construct()
     {
+        //gd
         $this->imageManager = new ImageManager(['driver' => 'gd']);
     }
 
